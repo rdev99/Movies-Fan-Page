@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Fan Page</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js" integrity="sha512-jq8sZI0I9Og0nnZ+CfJRnUzNSDKxr/5Bvha5bn7AHzTnRyxUfpUArMzfH++mwE/hb2efOo1gCAgI+1RMzf8F7g==" crossorigin="anonymous"></script>
+</head>
+<body background="./assets/back5.jpg">
+
+
+    <canvas class="background1"></canvas>
+        <nav class="nav">
+            <ul class="navul">
+                <li><div class="head">Movies Fan Page</div></li>
+            </ul>
+        </nav>
+    
+        <div class="searchm">
+            <label for="movie-search" class="label line-1 anim-typewriter">Search for the movie : </label>
+            <input id="movinput" type="text" placeholder="Search ......">
+            <button id="movie-button" onclick="moviesearch()">Search !!</button>
+        </div>
+        <div style="margin-top: 50px;" id="listitem">
+        </div>
+    
+        <div id="content" class="content">
+            
+        </div>
+       <div id="videoo" style="display: flex;">
+            
+       </div>
+    <script>
+        document.getElementById('movinput').addEventListener('keyup',function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                console.log("Hello");
+                moviesearch();
+            }
+        })
+    </script>
+</body>
+</html>

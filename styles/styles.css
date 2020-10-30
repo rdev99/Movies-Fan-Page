@@ -1,0 +1,126 @@
+.nav {
+    opacity: 0.7;
+    color: rgba(255, 255, 255, 0.795);
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.856);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+}
+.nav .head {
+    font-size: 27px;
+    font-weight: bold;
+    padding-left: 30px;
+}
+body {
+    color: white;
+    margin: 0px;
+    height: 100%;
+}
+.navul {
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.navul li {
+    display: inline-block;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.nav-link {
+    font-size: 30px;
+}
+.searchm input {
+    -webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+    width: 400px;
+    border-radius: 4px;
+    background: rgb(102, 102, 102);
+    opacity: 0.8;
+	border: 1px solid #ccc;
+	padding: 10px;
+	color: white;
+}
+.searchm input:focus {
+    box-shadow: 0 0 5px #43D1AF;
+	border: 1px solid #43D1AF;
+}
+::placeholder {
+    color: white;
+}
+
+.searchm {
+    margin-top: 80px;
+    margin-left: 600px;
+}
+.label {
+    font-size: 24px;
+    margin-right: 20px;
+}
+.searchm button {
+    -webkit-transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-ms-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+    box-sizing: border-box;
+    background-color: rgb(73, 73, 73);
+    border: none;
+    height: 30px;
+    margin-left: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+    color: rgb(255, 253, 253);
+    
+}
+.searchm button:hover {
+    background-color: rgb(49, 49, 49);
+}
+.content-search {
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 30px;
+    display: inline-block;
+    cursor: pointer;
+}
+.content-search h2 {
+    width: 200px;
+}
+.content-search img {
+    height: 300px;
+    width : 200px;
+}
+#listitem {
+    margin-left: 100px;
+}
+.content {
+    margin-top: 100px;
+    margin-left: 120px;
+    display: flex;
+}
+.content img {
+    height: 500px;
+    width: 400px;
+}
+
+.wikilink, .wikilink:hover, .wikilink:focus, .wikilink:active {
+    text-decoration: underline;
+    color: inherit;
+}
+.background1 {
+    color: darkkhaki;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }

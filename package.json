@@ -1,0 +1,15 @@
+{
+  "name": "self-curated-fan-page",
+  "version": "1.0.0",
+  "description": "IWT project",
+  "main": "index.js",
+  "repository": "git@github.com:rdev99/self-curated-fan-page.git",
+  "author": "rdev <deveshranjan920@gmail.com>",
+  "license": "GPL-3",
+  "dependencies": {
+    "lite-server": "^2.5.4"
+  },
+  "scripts": {
+    "start": "lite-server"
+  }
+}
