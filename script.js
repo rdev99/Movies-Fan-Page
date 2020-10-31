@@ -1,4 +1,5 @@
 function moviesearch() {
+    document.getElementById('videoo').innerHTML='';
     document.getElementById('listitem').innerHTML = ``;
     let movie = document.getElementById('movinput').value;
     document.getElementById('movinput').value='';
@@ -74,7 +75,7 @@ function getmovie(imdbtitle,titlemovie) {
 window.onload = function() {
     Particles.init({
       selector: '.background1',
-      maxParticles : 180,
+      maxParticles : 200,
       color : '#888888',
       sizeVariations : 4,
       speed : 0.8,
