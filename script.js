@@ -74,12 +74,13 @@ function getmovie(imdbtitle,titlemovie) {
 }
 window.onload = function() {
     Particles.init({
-      selector: '.background1',
+      selector: '#particle-background',
       maxParticles : 200,
-      color : '#888888',
-      sizeVariations : 4,
-      speed : 0.8,
-      connectParticles : true,
-      minDistance : 90
+      color : '#000',
+      sizeVariations : 10,
+      speed : 2,
+      connectParticles : false,
+      minDistance : 90,
+      opacity: 0.6,
     });
 };
