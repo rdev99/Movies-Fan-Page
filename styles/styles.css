@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 
 .header {
     opacity: 0.9;
-    color: rgba(255, 255, 255, 0.795);
+    color: white;
     margin: 0px;
-    background-image: linear-gradient(to right, black, orange);
+    background-image: radial-gradient(red, black);
     text-align: center;
-    font-family: 'Itim', cursive;
+    font-family: 'Indie Flower', cursive;;
     font-size: xx-large;
     font-size: 500%;
     font-weight: bold;
@@ -15,62 +16,107 @@ body {
     color: white;
     margin: 0px;
     height: 100%;
-    width: 100vw;
+    width: 100%;
     background-image: url("../assets/back.jpg"), linear-gradient(to left, rgb(155, 100, 0), rgb(146, 146, 27), orange);
-    background-blend-mode: difference;
+    background-blend-mode: multiply;
+    background-size: cover;
 }
-.searchm input {
-    -webkit-transition: all 0.30s ease-in-out;
-	-moz-transition: all 0.30s ease-in-out;
-	-ms-transition: all 0.30s ease-in-out;
-	-o-transition: all 0.30s ease-in-out;
-	outline: none;
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-    width: 400px;
-    border-radius: 4px;
-    background: rgb(102, 102, 102);
-    opacity: 0.8;
-	border: 1px solid #ccc;
-	padding: 10px;
-	color: white;
+#header-text {
+    background: -webkit-linear-gradient( rgb(68, 68, 231), cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.searchm input:focus {
-    box-shadow: 0 0 5px #43D1AF;
-	border: 1px solid #43D1AF;
+.searchBox {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform:  translate(-50%,50%);
+    background-image: linear-gradient(to left, black, blueviolet);
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+
+}
+
+.searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+  background: white;
+  color : blueviolet;
+}
+
+.searchButton {
+    color: black;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: violet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    outline: none;
+}
+
+.searchInput {
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: xx-large;    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
 }
 ::placeholder {
     color: white;
+    font-family: 'Caveat', cursive;
+    font-size: xx-large;
 }
 
-.searchm {
-    margin-top: 80px;
-    margin-left: 600px;
+@media only screen and (max-width: 620px) {
+    .searchBox:hover > .searchInput {
+        width: 100px;
+        padding: 0 6px;
+    }
 }
-.label {
-    font-size: 24px;
-    margin-right: 20px;
+
+
+#listitem {
+    margin-left: 10px;
 }
-.searchm button {
-    -webkit-transition: all 0.20s ease-in-out;
-	-moz-transition: all 0.20s ease-in-out;
-	-ms-transition: all 0.20s ease-in-out;
-	-o-transition: all 0.20s ease-in-out;
-    box-sizing: border-box;
-    background-color: rgb(73, 73, 73);
-    border: none;
-    height: 30px;
-    margin-left: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
-    cursor: pointer;
-    color: rgb(255, 253, 253);
+.content {
+    color: white;
+    margin-top: 100px;
+    margin-left: 120px;
+    display: flex;
     
 }
-.searchm button:hover {
-    background-color: rgb(49, 49, 49);
+.content img {
+    height: 500px;
+    width: 400px;
+    color: white;
 }
+
+.wikilink, .wikilink:hover, .wikilink:focus, .wikilink:active {
+    text-decoration: underline;
+    color: inherit;
+}
+
+#darkbg-container {
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 14px;
+}
+
+
 .content-search {
     margin-left: 70px;
     margin-right: 70px;
@@ -85,29 +131,19 @@ body {
     height: 300px;
     width : 200px;
 }
-#listitem {
-    margin-left: 100px;
-}
-.content {
-    margin-top: 100px;
-    margin-left: 120px;
-    display: flex;
-}
-.content img {
-    height: 500px;
-    width: 400px;
+
+.searchButton:active{
+    background-color: red;
+    color: white;
+    cursor: pointer;
 }
 
-.wikilink, .wikilink:hover, .wikilink:focus, .wikilink:active {
-    text-decoration: underline;
-    color: inherit;
-}
-#particle-background {
-    color: white;
+#particles {
+    color: darkkhaki;
     position: absolute;
     display: block;
     top: 0;
     left: 0;
     height: 100%;
     z-index: -1;
-  }
+}

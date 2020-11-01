@@ -11,7 +11,6 @@ function moviesearch() {
         document.getElementById('listitem').innerHTML = ``;
         document.getElementById('content').innerHTML='';
         let data=xhr.response;
-        // console.log(data.Search[0]);
         let list = '';
         for(let i=0;i<data.Search.length;i++)
         {
@@ -72,15 +71,15 @@ function getmovie(imdbtitle,titlemovie) {
     }
     xhr1.send();
 }
+
 window.onload = function() {
     Particles.init({
-      selector: '#particle-background',
+      selector: '#particles',
       maxParticles : 200,
-      color : '#000',
-      sizeVariations : 10,
+      color : 'black',
+      sizeVariations : 15,
       speed : 2,
       connectParticles : false,
-      minDistance : 90,
-      opacity: 0.6,
+      minDistance : 90
     });
 };
