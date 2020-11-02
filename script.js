@@ -1,4 +1,5 @@
 function moviesearch() {
+    document.getElementById('loader1').classList.add('loader');
     document.getElementById('videoo').innerHTML='';
     document.getElementById('listitem').innerHTML = ``;
     let movie = document.getElementById('movinput').value;
@@ -8,6 +9,7 @@ function moviesearch() {
     xhr.open('GET',url);
     xhr.responseType = 'json';
     xhr.onload = () => {
+        document.getElementById('loader1').classList.remove('loader');
         document.getElementById('listitem').innerHTML = ``;
         document.getElementById('content').innerHTML='';
         let data=xhr.response;
