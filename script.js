@@ -29,6 +29,7 @@ function moviesearch() {
 function getmovie(imdbtitle,titlemovie) {
     document.getElementById('listitem').innerHTML = ``;
     document.getElementById('content').innerHTML='';
+    document.getElementById('loader').classList.add('loader');
     let url = `http://www.omdbapi.com/?i=${imdbtitle}&apikey=33294efb`
     const xhr = new XMLHttpRequest();
     xhr.open('GET',url);
@@ -59,6 +60,7 @@ function getmovie(imdbtitle,titlemovie) {
     xhr1.open('GET',url1,true);
     xhr1.responseType = 'json';
     xhr1.onload = () => {
+        document.getElementById('loader').classList.remove('loader');
         let data1=xhr1.response;
         console.log(data1);
         document.getElementById('videoo').innerHTML=`<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
