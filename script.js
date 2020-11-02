@@ -76,8 +76,8 @@ window.onload = function() {
     Particles.init({
       selector: '#particles',
       maxParticles : 200,
-      color : 'black',
-      sizeVariations : 15,
+      color : '#000',
+      sizeVariations : 10,
       speed : 2,
       connectParticles : false,
       minDistance : 90
