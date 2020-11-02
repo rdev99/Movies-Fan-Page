@@ -4,7 +4,7 @@ function moviesearch() {
     let movie = document.getElementById('movinput').value;
     document.getElementById('movinput').value='';
     const xhr = new XMLHttpRequest();
-    let url=`http://www.omdbapi.com/?s=${movie}&apikey=33294efb`
+    let url=`https://www.omdbapi.com/?s=${movie}&apikey=33294efb`
     xhr.open('GET',url);
     xhr.responseType = 'json';
     xhr.onload = () => {
@@ -30,7 +30,7 @@ function getmovie(imdbtitle,titlemovie) {
     document.getElementById('listitem').innerHTML = ``;
     document.getElementById('content').innerHTML='';
     document.getElementById('loader').classList.add('loader');
-    let url = `http://www.omdbapi.com/?i=${imdbtitle}&apikey=33294efb`
+    let url = `https://www.omdbapi.com/?i=${imdbtitle}&apikey=33294efb`
     const xhr = new XMLHttpRequest();
     xhr.open('GET',url);
     xhr.responseType = 'json';
