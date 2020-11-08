@@ -74,6 +74,32 @@ function getmovie(imdbtitle,titlemovie) {
 
     }
     xhr1.send();
+    getRedditInfo(titlemovie);
+}
+
+function parseReddit(res) {
+    var returnParsed = "<div><ul>";
+    for (const child of res["data"]["children"]) {
+        returnParsed += "<li>" + "<a href='" + child["data"]["permalink"] + "'>" + child["data"]["title"] + "</a>" + "~<a href='https://reddit.com/r/" + child["data"]["subreddit"] +"'>" + child["data"]["subreddit"] + "</a></li>";
+    }
+    returnParsed += "</ul></div>";
+    console.log("SDFS");
+    return returnParsed;
+}
+
+function getRedditInfo(movieTitle) {
+    movieTitle = movieTitle.replace(' ', '%20');
+    document.getElementById("reddit").innerHTML = '<div id="fa-reddit"><i class="fa fa-reddit fa-3x">Now hot on Reddit</i></div>';
+    let url = "https://www.reddit.com/search.json?q=";
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("reddit").innerHTML += parseReddit(JSON.parse(this.responseText));
+        }
+    };
+    const params = "&limit=10&sort=hot";
+    xhttp.open("GET", url + movieTitle + params, true);
+    xhttp.send();
 }
 
 window.onload = function() {

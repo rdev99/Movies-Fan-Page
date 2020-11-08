@@ -5,7 +5,9 @@
     opacity: 0.9;
     color: white;
     margin: 0px;
-    background-image: radial-gradient(red, black);
+    background-image: radial-gradient(red 0.3px, black 0.3px);
+    background-blend-mode: lighten;
+    background-size: calc(10 * 0.3px) calc(10 * 0.3px);
     text-align: center;
     font-family: 'Indie Flower', cursive;;
     font-size: xx-large;
@@ -18,7 +20,7 @@ body {
     height: 100%;
     width: 100%;
     background-image: url("../assets/back.jpg"), linear-gradient(to left, rgb(155, 100, 0), rgb(146, 146, 27), orange);
-    background-blend-mode: multiply;
+    background-blend-mode: difference;
     background-size: cover;
 }
 #header-text {
@@ -133,9 +135,19 @@ body {
 }
 
 .searchButton:active{
-    background-color: red;
-    color: white;
-    cursor: pointer;
+    background-color: red !important;
+    color: white !important;
+    cursor: pointer !important;
+}
+
+#reddit {
+    background-color: orangered;
+}
+
+#fa-reddit {
+    align-items: center;
+    align-content: center;
+    text-align: center;
 }
 
 #particles {
@@ -151,22 +163,22 @@ body {
 
 .loader {
     opacity: 0.52;
-    border: 16px solid #928f8f;
+    border: 10px solid orangered;
     border-radius: 50%;
-    border-top: 16px solid #3498db;
+    border-top: 25px solid yellow;
     width: 120px;
     height: 120px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
-  }
-  
-  /* Safari */
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+    -webkit-animation: spin 0.5s linear infinite; /* Safari */
+    animation: spin 0.5s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+0% { -webkit-transform: rotate(0deg); }
+100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
