@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@700&display=swap');
 
 .header {
     opacity: 0.9;
@@ -141,13 +142,71 @@ body {
 }
 
 #reddit {
-    background-color: orangered;
+    background-color: #CCC;
+    background-image:
+    linear-gradient(90deg, transparent 79px, red 79px, blueviolet 81px, transparent 81px),
+    linear-gradient(rgba(31, 136, 136, 0.404) .1em, transparent .1em);
+    background-size: 100% 1.0em;
 }
 
 #fa-reddit {
     align-items: center;
     align-content: center;
     text-align: center;
+    font-family: 'Goldman', cursive;
+    font-size: 250%;
+    background-image: linear-gradient(to right, red, orangered);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.reddit-text {
+    color: black;
+    font: small-caps;
+    font-size: xx-large;
+    text-decoration: none;
+}
+
+.reddit-sub {
+    text-decoration: none !important;
+    color: blue;
+}
+
+blockquote {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    margin: 0.25em 0;
+    padding: 0.35em 40px;
+    line-height: 1.45;
+    position: relative;
+    color: #383838;
+}
+    
+blockquote:before {
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: orangered;
+}
+    
+blockquote cite {
+    color: #999999;
+    font-size: 18px;
+    display: block;
+    margin-top: 5px;
+    text-align: right;
+}
+     
+blockquote cite:before {
+    content: "~";
+    color: blue;
+    font: bolder;
 }
 
 #particles {

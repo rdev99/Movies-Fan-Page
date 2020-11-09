@@ -1,7 +1,8 @@
 function moviesearch() {
     document.getElementById('loader1').classList.add('loader');
     document.getElementById('videoo').innerHTML='';
-    document.getElementById('listitem').innerHTML = ``;
+    document.getElementById('listitem').innerHTML = '';
+    document.getElementById('reddit').innerHTML = '';
     let movie = document.getElementById('movinput').value;
     document.getElementById('movinput').value='';
     const xhr = new XMLHttpRequest();
@@ -29,7 +30,7 @@ function moviesearch() {
 }
 
 function getmovie(imdbtitle,titlemovie) {
-    document.getElementById('listitem').innerHTML = ``;
+    document.getElementById('listitem').innerHTML = '';
     document.getElementById('content').innerHTML='';
     document.getElementById('loader').classList.add('loader');
     let url = `https://www.omdbapi.com/?i=${imdbtitle}&apikey=33294efb`
@@ -78,9 +79,11 @@ function getmovie(imdbtitle,titlemovie) {
 }
 
 function parseReddit(res) {
-    var returnParsed = "<div><ul>";
+    var returnParsed = "<div><ul style='list-style-type: none'>";
     for (const child of res["data"]["children"]) {
-        returnParsed += "<li>" + "<a href='" + child["data"]["permalink"] + "'>" + child["data"]["title"] + "</a>" + "~<a href='https://reddit.com/r/" + child["data"]["subreddit"] +"'>" + child["data"]["subreddit"] + "</a></li>";
+        returnParsed += "<li><blockquote>" + "<a class = 'reddit-text' href='" + child["data"]["permalink"]
+         + "'>" + child["data"]["title"] + "</a>" + "<cite><a class = 'reddit-sub' href='https://reddit.com/r/"
+         + child["data"]["subreddit"] +"'>" + child["data"]["subreddit"] + "</a></cite></blockquote></li>";
     }
     returnParsed += "</ul></div>";
     console.log("SDFS");
@@ -89,7 +92,7 @@ function parseReddit(res) {
 
 function getRedditInfo(movieTitle) {
     movieTitle = movieTitle.replace(' ', '%20');
-    document.getElementById("reddit").innerHTML = '<div id="fa-reddit"><i class="fa fa-reddit fa-3x">Now hot on Reddit</i></div>';
+    document.getElementById("reddit").innerHTML = '<div id="fa-reddit"><i class="fa fa-reddit fa-3x"></i> Most Relevant on Reddit</div>';
     let url = "https://www.reddit.com/search.json?q=";
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -97,7 +100,7 @@ function getRedditInfo(movieTitle) {
             document.getElementById("reddit").innerHTML += parseReddit(JSON.parse(this.responseText));
         }
     };
-    const params = "&limit=10&sort=hot";
+    const params = "&limit=10&sort=relevance";
     xhttp.open("GET", url + movieTitle + params, true);
     xhttp.send();
 }
