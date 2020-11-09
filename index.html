@@ -14,6 +14,7 @@
     <canvas id="particles"></canvas>
 
     <div class="header">
+        <div id="header-bg">
             <span id="header-text">Movie Fan Page</span>
             <span class="searchBox">
                 <input class="searchInput" type="text" name="" placeholder="Search . . ." id="movinput">
@@ -22,19 +23,21 @@
                 </button>
             </span>
         </div>
+    </div>
 
-        <div style="margin-top: 90px;" id="listitem">
+    <div style="margin-top: 90px;" id="listitem">
+    </div>
+    <div style="margin-left: 890px; margin-top: 100px;" id='loader1' class=""></div>
+    <div id="darkbg-container">
+        <div id="content" class="content">
         </div>
-        <div style="margin-left: 890px; margin-top: 100px;" id='loader1' class=""></div>
-        <div id="darkbg-container">
-            <div id="content" class="content">
-            </div>
-            <div style="margin-left: 890px;" id='loader' class=""></div>
-            <div id="videoo" style="display: flex;">
-            </div>
-            <div id="reddit">
-            </div>
+        <div style="margin-left: 890px;" id='loader' class=""></div>
+        <div id="videoo" style="display: flex;">
         </div>
+        <div id="reddit">
+        </div>
+    </div>
+    
     <script>
         document.getElementById('movinput').addEventListener('keyup',function(event) {
             if (event.keyCode === 13) {

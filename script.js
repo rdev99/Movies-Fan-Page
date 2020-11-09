@@ -86,7 +86,6 @@ function parseReddit(res) {
          + child["data"]["subreddit"] +"'>" + child["data"]["subreddit"] + "</a></cite></blockquote></li>";
     }
     returnParsed += "</ul></div>";
-    console.log("SDFS");
     return returnParsed;
 }
 
