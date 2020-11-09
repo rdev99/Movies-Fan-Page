@@ -132,6 +132,16 @@ input {
     font-size: 14px;
 }
 
+#imdb-link {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+#google-link {
+    color: khaki;
+    cursor: pointer;
+    text-decoration: none;
+}
 
 .content-search {
     margin-left: 70px;

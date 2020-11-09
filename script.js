@@ -42,19 +42,23 @@ function getmovie(imdbtitle,titlemovie) {
         document.getElementById('content').innerHTML=`<div style="display: flex;flex-direction: column;">
             <img src="${data.Poster}" alt="${data.Title}">
             <div style="display: flex;flex-direction: column;">
-                <span style="margin-top: 20px;font-size: 30px;"><span style="font-weight: bold;"> Imdb Rating</span> - ${data.imdbRating}</span>
-                <span><span style="font-weight: bold;">Imdb Votes</span> - ${data.imdbVotes}</span>
+                <a href = 'https://imdb.com/title/${imdbtitle}' id = "imdb-link" >
+                    <span style="margin-top: 20px;font-size: 30px;"><span style="font-weight: bold;"> Imdb Rating</span> - ${data.imdbRating}</span>
+                    <br/>
+                    <span style=" font-size: 25px;"><span style="font-weight: bold;">Imdb Votes</span> - ${data.imdbVotes}</span>
+                </a>
             </div>
         </div>
         <div style="display: flex;flex-direction: column;">
-            <span style="margin-left: 180px;margin-top: 20px;font-size: 60px;text-decoration: underline;font-weight: bold;">${data.Title}(${data.Year})</span>
+            <a href = 'https://google.com/search?q=${titlemovie}' id = "google-link" >
+                <span style="margin-left: 180px;margin-top: 20px;font-size: 60px;text-decoration: underline;font-weight: bold;">${data.Title}(${data.Year})</span>
+            </a>
             <div style="margin-left: 200px;font-size: 20px;margin-top: 10px;">${data.Rated} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Runtime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Genre}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.Released}(${data.Country})</div>
             <div style="margin-left:180px;margin-top: 30px;font-size: 25px;margin-right: 100px;"><span style="font-weight: bold;">Plot -</span> ${data.Plot}</div>
             <div style="margin-left:180px;margin-top: 30px;font-size: 25px;"><span style="font-weight: bold;">Awards -</span> ${data.Awards}.</div>
             <div style="margin-left:180px;margin-top: 30px;font-size: 25px;"><span style="font-weight: bold;">Director -</span> ${data.Director}</div>
             <div style="margin-left:180px;margin-top: 30px;font-size: 25px;margin-right: 80px;"><span style="font-weight: bold;">Writers -</span> ${data.Writer}</div>
             <div style="margin-left:180px;margin-top: 30px;font-size: 25px;margin-right: 80px;"><span style="font-weight: bold;">Actors -</span> ${data.Actors}</div>
-            
         </div>`;
     }
     xhr.send();
@@ -81,7 +85,7 @@ function getmovie(imdbtitle,titlemovie) {
 function parseReddit(res) {
     var returnParsed = "<div><ul style='list-style-type: none'>";
     for (const child of res["data"]["children"]) {
-        returnParsed += "<li><blockquote>" + "<a class = 'reddit-text' href='" + child["data"]["permalink"]
+        returnParsed += "<li><blockquote>" + "<a class = 'reddit-text' href='https://reddit.com" + child["data"]["permalink"]
          + "'>" + child["data"]["title"] + "</a>" + "<cite><a class = 'reddit-sub' href='https://reddit.com/r/"
          + child["data"]["subreddit"] +"'>" + child["data"]["subreddit"] + "</a></cite></blockquote></li>";
     }
