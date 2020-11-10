@@ -3,52 +3,51 @@ function moviesearch() {
         document.getElementById("listitem").innerHTML = `<h1 class="input-error" "><strong style="color:white">Empty Input!</strong> Your movie is being made.</h1>`;
         return;
     }
-    document.getElementById('videoo').innerHTML='';
+    document.getElementById('videoo').innerHTML = '';
     document.getElementById('listitem').innerHTML = '';
     document.getElementById('reddit').innerHTML = '';
+    document.getElementById('content').innerHTML = '';
     document.getElementById('loader1').classList.add('loader');
     let movie = document.getElementById('movinput').value;
-    document.getElementById('movinput').value='';
+    document.getElementById('movinput').value = '';
     const xhr = new XMLHttpRequest();
-    let url=`https://www.omdbapi.com/?s=${movie}&apikey=33294efb`;
-    xhr.open('GET',url);
+    let url = `https://www.omdbapi.com/?s=${movie}&apikey=33294efb`;
+    xhr.open('GET', url);
     xhr.responseType = 'json';
     xhr.onload = () => {
         document.getElementById('loader1').classList.remove('loader');
         document.getElementById('listitem').innerHTML = ``;
-        document.getElementById('content').innerHTML='';
+        // document.getElementById('content').innerHTML = '';
         let list = '';
         try {
-            let data=xhr.response;
-            for(let i=0;i<data.Search.length;i++)
-            {
-                if(data.Search[i].Poster === "N/A")
-                {
+            let data = xhr.response;
+            for (let i = 0; i < data.Search.length; i++) {
+                if (data.Search[i].Poster === "N/A") {
                     continue;
                 }
-                
-                list=list+`<div class="content-search" onclick="getmovie('${data.Search[i].imdbID}','${data.Search[i].Title}')"><img src="${data.Search[i].Poster}" alt=""><h2 style="text-align: center;">${data.Search[i].Title}(${data.Search[i].Year})</h2></div>`
+
+                list = list + `<div class="content-search" onclick="getmovie('${data.Search[i].imdbID}','${data.Search[i].Title}')"><img src="${data.Search[i].Poster}" alt=""><h2 style="text-align: center;">${data.Search[i].Title}(${data.Search[i].Year})</h2></div>`
             }
         }
         catch {
             list = `<h1 class="input-error"><i class="fa fa-exclamation-circle"></i>&nbsp;<strong style="color:white">Unsuccessful!</strong>&nbsp;&nbsp;${xhr.response["Error"]}</h1>`;
         }
-        document.getElementById('listitem').innerHTML=list;
+        document.getElementById('listitem').innerHTML = list;
     }
     xhr.send();
 }
 
-function getmovie(imdbtitle,titlemovie) {
+async function getmovie(imdbtitle, titlemovie) {
     document.getElementById('listitem').innerHTML = '';
-    document.getElementById('content').innerHTML='';
+    document.getElementById('content').innerHTML = '';
     document.getElementById('loader').classList.add('loader');
     let url = `https://www.omdbapi.com/?i=${imdbtitle}&apikey=33294efb`
     const xhr = new XMLHttpRequest();
-    xhr.open('GET',url);
+    xhr.open('GET', url);
     xhr.responseType = 'json';
     xhr.onload = () => {
-        let data=xhr.response;
-        document.getElementById('content').innerHTML=`<div class = "row">
+        let data = xhr.response;
+        document.getElementById('content').innerHTML = `<div class = "row">
         <div class="column">
             <img src="${data.Poster}" alt="${data.Title}">
             <div style="display: flex;flex-direction: column;">
@@ -63,18 +62,19 @@ function getmovie(imdbtitle,titlemovie) {
             <a href = 'https://google.com/search?q=${titlemovie}' id = "google-link" >
                 <span style="text-decoration: underline;font-weight: bold;">${data.Title}(${data.Year})</span>
             </a>
-            <div>${data.Rated} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Runtime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Genre}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.Released}(${data.Country})</div>
+            <div>${data.Rated} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Runtime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Genre}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.Released}(${data.Country})</div><br/><br/>
             <div><span style="font-weight: bold;">Plot -</span> ${data.Plot}</div>
             <div><span style="font-weight: bold;">Awards -</span> ${data.Awards}.</div>
             <div><span style="font-weight: bold;">Director -</span> ${data.Director}</div>
             <div><span style="font-weight: bold;">Writers -</span> ${data.Writer}</div>
             <div><span style="font-weight: bold;">Actors -</span> ${data.Actors}</div>
         </div>`;
+        getRedditInfo(titlemovie);
     }
     xhr.send();
     let xhr1 = new XMLHttpRequest();
     let url1 = `https://cors-anywhere.herokuapp.com/https://tastedive.com/api/similar?q=${titlemovie}&info=1&k=389627-hackersi-7OS4QQY2`;
-    xhr1.open('GET',url1,true);
+    xhr1.open('GET', url1, true);
     xhr1.responseType = 'json';
     xhr1.onload = () => {
         if (xhr.status == 200) {
@@ -93,15 +93,14 @@ function getmovie(imdbtitle,titlemovie) {
         document.getElementById('loader').classList.remove('loader');
     }
     xhr1.send();
-    getRedditInfo(titlemovie);
 }
 
 function parseReddit(res) {
     var returnParsed = "<div><ul style='list-style-type: none'>";
     for (const child of res["data"]["children"]) {
         returnParsed += "<li><blockquote>" + "<a class = 'reddit-text' href='https://reddit.com" + child["data"]["permalink"]
-         + "'>" + child["data"]["title"] + "</a>" + "<cite><a class = 'reddit-sub' href='https://reddit.com/r/"
-         + child["data"]["subreddit"] +"'>" + child["data"]["subreddit"] + "</a></cite></blockquote></li>";
+            + "'>" + child["data"]["title"] + "</a>" + "<cite><a class = 'reddit-sub' href='https://reddit.com/r/"
+            + child["data"]["subreddit"] + "'>" + child["data"]["subreddit"] + "</a></cite></blockquote></li>";
     }
     returnParsed += "</ul></div>";
     return returnParsed;
@@ -112,7 +111,7 @@ function getRedditInfo(movieTitle) {
     document.getElementById("reddit").innerHTML = '<div id="fa-reddit"><i class="fa fa-reddit fa-3x"></i> Most Relevant on Reddit</div>';
     let url = "https://www.reddit.com/search.json?q=";
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("reddit").innerHTML += parseReddit(JSON.parse(this.responseText));
         }
@@ -122,14 +121,14 @@ function getRedditInfo(movieTitle) {
     xhttp.send();
 }
 
-window.onload = function() {
+window.onload = function () {
     Particles.init({
-      selector: '#particles',
-      maxParticles : 200,
-      color : '#000',
-      sizeVariations : 10,
-      speed : 2,
-      connectParticles : false,
-      minDistance : 90
+        selector: '#particles',
+        maxParticles: 200,
+        color: '#000',
+        sizeVariations: 10,
+        speed: 2,
+        connectParticles: false,
+        minDistance: 90
     });
 };
