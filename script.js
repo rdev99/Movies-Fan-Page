@@ -1,12 +1,15 @@
+function clearSite() {
+    document.getElementById('videoo').innerHTML = '';
+    document.getElementById('listitem').innerHTML = '';
+    document.getElementById('reddit').innerHTML = '';
+    document.getElementById('content').innerHTML = '';
+}
+
 function moviesearch() {
     if (document.getElementById("movinput").value.length == 0) {
         document.getElementById("listitem").innerHTML = `<h1 class="input-error" "><strong style="color:white">Empty Input!</strong> Your movie is being made.</h1>`;
         return;
     }
-    document.getElementById('videoo').innerHTML = '';
-    document.getElementById('listitem').innerHTML = '';
-    document.getElementById('reddit').innerHTML = '';
-    document.getElementById('content').innerHTML = '';
     document.getElementById('loader1').classList.add('loader');
     let movie = document.getElementById('movinput').value;
     document.getElementById('movinput').value = '';
