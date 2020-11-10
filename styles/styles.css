@@ -95,17 +95,18 @@ input {
     font-size: xx-large;
 }
 
-#omdb-error{
-    background: #c51244 !important;
+.input-error{
+    background: firebrick !important;
     padding: 10px !important;
     border-radius: 0 !important;
     position: relative; 
     display: inline-block !important;
-    box-shadow: 1px 1px 1px #aaaaaa;
+    box-shadow: 20px 20px 20px goldenrod;
     margin-top: 10px;
     text-align: center;
-    ;
+    color: goldenrod;
 }
+
 
 @media only screen and (max-width: 620px) {
     .searchBox:hover > .searchInput {
@@ -144,10 +145,13 @@ input {
     float: left;
     width: 50%;
     box-sizing: border-box;
+    margin-top: 20px;
+    text-align: justify;
 }
 
 .column:nth-child(1) {
     width: 30%;
+    text-align: center;
 }
 .column:nth-child(2) {
     width: 70%;
@@ -193,6 +197,7 @@ img {
     color: khaki;
     cursor: pointer;
     text-decoration: none;
+    font-size: 42px;
 }
 
 .content-search {

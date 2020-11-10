@@ -1,8 +1,12 @@
 function moviesearch() {
-    document.getElementById('loader1').classList.add('loader');
+    if (document.getElementById("movinput").value.length == 0) {
+        document.getElementById("listitem").innerHTML = `<h1 class="input-error" "><strong style="color:white">Empty Input!</strong> Your movie is being made.</h1>`;
+        return;
+    }
     document.getElementById('videoo').innerHTML='';
     document.getElementById('listitem').innerHTML = '';
     document.getElementById('reddit').innerHTML = '';
+    document.getElementById('loader1').classList.add('loader');
     let movie = document.getElementById('movinput').value;
     document.getElementById('movinput').value='';
     const xhr = new XMLHttpRequest();
@@ -27,7 +31,7 @@ function moviesearch() {
             }
         }
         catch {
-            list = `<h1 id="omdb-error" class="alert alert-error"><i class="fa fa-exclamation-circle"></i>&nbsp;<strong>Unsuccessful!</strong>&nbsp;&nbsp;${xhr.response["Error"]}</h1>`;
+            list = `<h1 class="input-error"><i class="fa fa-exclamation-circle"></i>&nbsp;<strong style="color:white">Unsuccessful!</strong>&nbsp;&nbsp;${xhr.response["Error"]}</h1>`;
         }
         document.getElementById('listitem').innerHTML=list;
     }
@@ -73,15 +77,16 @@ function getmovie(imdbtitle,titlemovie) {
     xhr1.open('GET',url1,true);
     xhr1.responseType = 'json';
     xhr1.onload = () => {
+        if (xhr.status == 200) {
+            let data1=xhr1.response;
+            document.getElementById('videoo').innerHTML=`<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
+            <iframe style="display: inline-block;" width="560" height="315" src="${data1.Similar.Info[0].yUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div style="display: flex;flex-direction: column;">
+                <span style="font-size: 23px; margin-left: 60px; margin-top: 80px;margin-right: 70px;"><span style="font-weight: bold;text-decoration: none"><a class="wikilink" target="_blank" href="${data1.Similar.Info[0].wUrl}">Info</a></span>&nbsp; - &nbsp; ${data1.Similar.Info[0].wTeaser}</span>
+            </div>`;
+        }
         document.getElementById('loader').classList.remove('loader');
-        let data1=xhr1.response;
-        document.getElementById('videoo').innerHTML=`<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
-        <iframe style="display: inline-block;" width="560" height="315" src="${data1.Similar.Info[0].yUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div style="display: flex;flex-direction: column;">
-            <span style="font-size: 23px; margin-left: 60px; margin-top: 80px;margin-right: 70px;"><span style="font-weight: bold;text-decoration: none"><a class="wikilink" target="_blank" href="${data1.Similar.Info[0].wUrl}">Info</a></span>&nbsp; - &nbsp; ${data1.Similar.Info[0].wTeaser}</span>
-        </div>`;
-
     }
     xhr1.send();
     getRedditInfo(titlemovie);
