@@ -79,12 +79,16 @@ function getmovie(imdbtitle,titlemovie) {
     xhr1.onload = () => {
         if (xhr.status == 200) {
             let data1=xhr1.response;
-            document.getElementById('videoo').innerHTML=`<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
-            <iframe style="display: inline-block;" width="560" height="315" src="${data1.Similar.Info[0].yUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div style="display: flex;flex-direction: column;">
-                <span style="font-size: 23px; margin-left: 60px; margin-top: 80px;margin-right: 70px;"><span style="font-weight: bold;text-decoration: none"><a class="wikilink" target="_blank" href="${data1.Similar.Info[0].wUrl}">Info</a></span>&nbsp; - &nbsp; ${data1.Similar.Info[0].wTeaser}</span>
-            </div>`;
+            if (data1.Similar.Info[0].yUrl.length != 0) {
+                document.getElementById('videoo').innerHTML = `<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
+                <iframe style="display: inline-block;" width="560" height="315" src="${data1.Similar.Info[0].yUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>`;
+            }
+            if (data1.Similar.Info[0].wTeaser.length != 0) {
+                document.getElementById('videoo').innerHTML += `<div style="display: flex;flex-direction: column;">
+                    <span style="font-size: 23px; margin-left: 60px; margin-top: 80px;margin-right: 70px;"><span style="font-weight: bold;text-decoration: none"><a class="wikilink" target="_blank" href="${data1.Similar.Info[0].wUrl}">Info</a></span>&nbsp; - &nbsp; ${data1.Similar.Info[0].wTeaser}</span>
+                </div>`;
+            }
         }
         document.getElementById('loader').classList.remove('loader');
     }
