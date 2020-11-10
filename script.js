@@ -6,23 +6,28 @@ function moviesearch() {
     let movie = document.getElementById('movinput').value;
     document.getElementById('movinput').value='';
     const xhr = new XMLHttpRequest();
-    let url=`https://www.omdbapi.com/?s=${movie}&apikey=33294efb`
+    let url=`https://www.omdbapi.com/?s=${movie}&apikey=33294efb`;
     xhr.open('GET',url);
     xhr.responseType = 'json';
     xhr.onload = () => {
         document.getElementById('loader1').classList.remove('loader');
         document.getElementById('listitem').innerHTML = ``;
         document.getElementById('content').innerHTML='';
-        let data=xhr.response;
         let list = '';
-        for(let i=0;i<data.Search.length;i++)
-        {
-            if(data.Search[i].Poster === "N/A")
+        try {
+            let data=xhr.response;
+            for(let i=0;i<data.Search.length;i++)
             {
-                continue;
+                if(data.Search[i].Poster === "N/A")
+                {
+                    continue;
+                }
+                
+                list=list+`<div class="content-search" onclick="getmovie('${data.Search[i].imdbID}','${data.Search[i].Title}')"><img src="${data.Search[i].Poster}" alt=""><h2 style="text-align: center;">${data.Search[i].Title}(${data.Search[i].Year})</h2></div>`
             }
-            
-            list=list+`<div class="content-search" onclick="getmovie('${data.Search[i].imdbID}','${data.Search[i].Title}')"><img src="${data.Search[i].Poster}" alt=""><h2 style="text-align: center;">${data.Search[i].Title}(${data.Search[i].Year})</h2></div>`
+        }
+        catch {
+            list = `<h1 id="omdb-error" class="alert alert-error"><i class="fa fa-exclamation-circle"></i>&nbsp;<strong>Unsuccessful!</strong>&nbsp;&nbsp;${xhr.response["Error"]}</h1>`;
         }
         document.getElementById('listitem').innerHTML=list;
     }
@@ -39,7 +44,8 @@ function getmovie(imdbtitle,titlemovie) {
     xhr.responseType = 'json';
     xhr.onload = () => {
         let data=xhr.response;
-        document.getElementById('content').innerHTML=`<div style="display: flex;flex-direction: column;">
+        document.getElementById('content').innerHTML=`<div class = "row">
+        <div class="column">
             <img src="${data.Poster}" alt="${data.Title}">
             <div style="display: flex;flex-direction: column;">
                 <a href = 'https://imdb.com/title/${imdbtitle}' id = "imdb-link" >
@@ -49,16 +55,16 @@ function getmovie(imdbtitle,titlemovie) {
                 </a>
             </div>
         </div>
-        <div style="display: flex;flex-direction: column;">
+        <div class = "column" id = "movie-info">
             <a href = 'https://google.com/search?q=${titlemovie}' id = "google-link" >
-                <span style="margin-left: 180px;margin-top: 20px;font-size: 60px;text-decoration: underline;font-weight: bold;">${data.Title}(${data.Year})</span>
+                <span style="text-decoration: underline;font-weight: bold;">${data.Title}(${data.Year})</span>
             </a>
-            <div style="margin-left: 200px;font-size: 20px;margin-top: 10px;">${data.Rated} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Runtime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Genre}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.Released}(${data.Country})</div>
-            <div style="margin-left:180px;margin-top: 30px;font-size: 25px;margin-right: 100px;"><span style="font-weight: bold;">Plot -</span> ${data.Plot}</div>
-            <div style="margin-left:180px;margin-top: 30px;font-size: 25px;"><span style="font-weight: bold;">Awards -</span> ${data.Awards}.</div>
-            <div style="margin-left:180px;margin-top: 30px;font-size: 25px;"><span style="font-weight: bold;">Director -</span> ${data.Director}</div>
-            <div style="margin-left:180px;margin-top: 30px;font-size: 25px;margin-right: 80px;"><span style="font-weight: bold;">Writers -</span> ${data.Writer}</div>
-            <div style="margin-left:180px;margin-top: 30px;font-size: 25px;margin-right: 80px;"><span style="font-weight: bold;">Actors -</span> ${data.Actors}</div>
+            <div>${data.Rated} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Runtime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Genre}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.Released}(${data.Country})</div>
+            <div><span style="font-weight: bold;">Plot -</span> ${data.Plot}</div>
+            <div><span style="font-weight: bold;">Awards -</span> ${data.Awards}.</div>
+            <div><span style="font-weight: bold;">Director -</span> ${data.Director}</div>
+            <div><span style="font-weight: bold;">Writers -</span> ${data.Writer}</div>
+            <div><span style="font-weight: bold;">Actors -</span> ${data.Actors}</div>
         </div>`;
     }
     xhr.send();
@@ -69,7 +75,6 @@ function getmovie(imdbtitle,titlemovie) {
     xhr1.onload = () => {
         document.getElementById('loader').classList.remove('loader');
         let data1=xhr1.response;
-        console.log(data1);
         document.getElementById('videoo').innerHTML=`<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
         <iframe style="display: inline-block;" width="560" height="315" src="${data1.Similar.Info[0].yUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>

@@ -7,9 +7,9 @@
     opacity: 0.95;
     color: white;
     margin: 0px;
-    background-image: radial-gradient(red 0.3px, black 0.3px);
-    background-blend-mode: lighten;
-    background-size: calc(10 * 0.3px) calc(10 * 0.3px);
+    background-image: radial-gradient(red 0.5px, black 0.5px);
+    background-blend-mode: multiply;
+    background-size: calc(10 * 0.5px) calc(10 * 0.5px);
     text-align: center;
     font-family: 'Indie Flower', cursive;;
     font-size: xx-large;
@@ -24,21 +24,22 @@
 body {
     color: white;
     margin: 0px;
-    height: 100%;
+    height: 100vh;
     width: 100%;
-    background-image: url("../assets/back.jpg"), linear-gradient(to left, rgb(155, 100, 0), rgb(146, 146, 27), orange);
-    background-blend-mode: difference;
+    background-image: url("../assets/back.jpg"), linear-gradient(to right, #444, #aaa, orange);
+    background-blend-mode: color-burn;
     background-size: cover;
 }
 
 #header-text {
     background: -webkit-linear-gradient( rgb(68, 68, 231), cyan);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 input {
-    caret-color: blueviolet;
+    caret-color: white;
 }
 
 .searchBox {
@@ -94,6 +95,18 @@ input {
     font-size: xx-large;
 }
 
+#omdb-error{
+    background: #c51244 !important;
+    padding: 10px !important;
+    border-radius: 0 !important;
+    position: relative; 
+    display: inline-block !important;
+    box-shadow: 1px 1px 1px #aaaaaa;
+    margin-top: 10px;
+    text-align: center;
+    ;
+}
+
 @media only screen and (max-width: 620px) {
     .searchBox:hover > .searchInput {
         width: 100px;
@@ -103,24 +116,63 @@ input {
 
 
 #listitem {
-    margin-left: 10px;
+    place-items: center;
+    text-align: center;
+    align-items: center;
 }
 .content {
     color: whitesmoke;
     margin-top: 100px;
-    margin-left: 120px;
+    margin-left: 3vw;
+    margin-right: 3vw;
     display: flex;
     font-family: 'Roboto Slab', serif;  
 }
 .content img {
     height: 500px;
     width: 400px;
+    padding-top: 5px;
     color: white;
 }
 
 .wikilink, .wikilink:hover, .wikilink:focus, .wikilink:active {
     text-decoration: underline;
     color: inherit;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.column:nth-child(1) {
+    width: 30%;
+}
+.column:nth-child(2) {
+    width: 70%;
+}
+ 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    box-sizing: border-box;
+}
+   
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100% !important;
+    }
+}
+
+#movie-info {
+    font-size: 26px;
 }
 
 #darkbg-container {

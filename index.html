@@ -42,6 +42,9 @@
         document.getElementById('movinput').addEventListener('keyup',function(event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
+                if (document.getElementById("movinput").value === "") {
+                    return;
+                }
                 moviesearch();
             }
         })
