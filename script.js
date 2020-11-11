@@ -85,8 +85,13 @@ function getmovie(imdbtitle, titlemovie) {
         if (xhr.status == 200) {
             let data1 = xhr1.response;
             document.getElementById('similars').insertAdjacentHTML('beforeend', `<h2 style="text-align: center;">You may also like...</h2>`);
+            let i=0;
             data1.Similar.Results.forEach(req => {
-                document.getElementById('similars').insertAdjacentHTML('beforeend', `<div><h3><a target="_blank" style="color:cyan;" href="${req.wUrl}">${req.Name}</a></h3><h4>${req.wTeaser}</h4></div>`);
+                if(i<7)
+                {
+                    document.getElementById('similars').insertAdjacentHTML('beforeend', `<div><h3><a target="_blank" style="color:cyan;" href="${req.wUrl}">${req.Name}</a></h3><h4>${req.wTeaser}</h4></div>`);
+                }
+                i++;
             });
             if (data1.Similar.Info[0].yUrl.length != 0) {
                 document.getElementById('videoo').innerHTML = `<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
