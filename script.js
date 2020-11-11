@@ -80,9 +80,10 @@ function getmovie(imdbtitle, titlemovie) {
     let url1 = `https://cors-anywhere.herokuapp.com/https://tastedive.com/api/similar?q=${titlemovie}&info=1&k=389627-hackersi-7OS4QQY2`;
     xhr1.open('GET', url1, true);
     xhr1.responseType = 'json';
+    xhr1.onerror = () => { document.getElementById('loader').classList.remove('loader'); }
     xhr1.onload = () => {
         if (xhr.status == 200) {
-            let data1=xhr1.response;
+            let data1 = xhr1.response;
             if (data1.Similar.Info[0].yUrl.length != 0) {
                 document.getElementById('videoo').innerHTML = `<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
                 <iframe style="display: inline-block;" width="560" height="315" src="${data1.Similar.Info[0].yUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
