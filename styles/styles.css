@@ -37,7 +37,7 @@ body {
     margin: 0px;
     height: 100vh;
     width: 100%;
-    background-image: url("../assets/back.jpg"), linear-gradient(to right, rgb(175, 90, 90), rgb(155, 155, 155), rgb(56, 150, 80));
+    background-image: url("../assets/back.jpg"), linear-gradient(to right, #ccc, rgb(155, 155, 155), #444);
     background-blend-mode: color-burn;
     background-size: cover;
 }
