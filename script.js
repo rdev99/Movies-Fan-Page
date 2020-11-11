@@ -55,7 +55,7 @@ function getmovie(imdbtitle, titlemovie) {
         <div class="column">
             <img src="${data.Poster}" alt="${data.Title}">
             <div style="display: flex;flex-direction: column;">
-                <a href = 'https://imdb.com/title/${imdbtitle}' id = "imdb-link" >
+                <a target="_blank" href = 'https://imdb.com/title/${imdbtitle}' id = "imdb-link" >
                     <span style="margin-top: 20px;font-size: 30px;"><span style="font-weight: bold;"> Imdb Rating</span> - ${data.imdbRating}</span>
                     <br/>
                     <span style=" font-size: 25px;"><span style="font-weight: bold;">Imdb Votes</span> - ${data.imdbVotes}</span>
@@ -63,7 +63,7 @@ function getmovie(imdbtitle, titlemovie) {
             </div>
         </div>
         <div class = "column" id = "movie-info">
-            <a href = 'https://google.com/search?q=${titlemovie}' id = "google-link" >
+            <a target="_blank" href = 'https://google.com/search?q=${titlemovie}' id = "google-link" >
                 <span style="text-decoration: underline;font-weight: bold;">${data.Title}(${data.Year})</span>
             </a>
             <div>${data.Rated} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Runtime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${data.Genre}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.Released}(${data.Country})</div><br/><br/>
@@ -86,7 +86,7 @@ function getmovie(imdbtitle, titlemovie) {
             let data1 = xhr1.response;
             document.getElementById('similars').insertAdjacentHTML('beforeend', `<h2 style="text-align: center;">You may also like...</h2>`);
             data1.Similar.Results.forEach(req => {
-                document.getElementById('similars').insertAdjacentHTML('beforeend', `<div><h3><a style="color:cyan;" href="${req.wUrl}">${req.Name}</a></h3><h4>${req.wTeaser}</h4></div>`);
+                document.getElementById('similars').insertAdjacentHTML('beforeend', `<div><h3><a target="_blank" style="color:cyan;" href="${req.wUrl}">${req.Name}</a></h3><h4>${req.wTeaser}</h4></div>`);
             });
             if (data1.Similar.Info[0].yUrl.length != 0) {
                 document.getElementById('videoo').innerHTML = `<div style="display: flex;flex-direction: column;margin-left: 120px;margin-top: 80px;margin-bottom: 50px;">
@@ -107,8 +107,8 @@ function getmovie(imdbtitle, titlemovie) {
 function parseReddit(res) {
     var returnParsed = "<div><ul style='list-style-type: none'>";
     for (const child of res["data"]["children"]) {
-        returnParsed += "<li><blockquote>" + "<a class = 'reddit-text' href='https://reddit.com" + child["data"]["permalink"]
-            + "'>" + child["data"]["title"] + "</a>" + "<cite><a class = 'reddit-sub' href='https://reddit.com/r/"
+        returnParsed += "<li><blockquote>" + "<a target='_blank' class = 'reddit-text' href='https://reddit.com" + child["data"]["permalink"]
+            + "'>" + child["data"]["title"] + "</a>" + `<cite><a target="_blank" class = 'reddit-sub' href='https://reddit.com/r/`
             + child["data"]["subreddit"] + "'>" + child["data"]["subreddit"] + "</a></cite></blockquote></li>";
     }
     returnParsed += "</ul></div>";
