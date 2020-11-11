@@ -3,6 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@450&display=swap');
 
+h2{
+    font-size: 36px;
+}
+h3{
+    font-size: 27px;
+}
+h4{
+    font-size: 20px;
+    padding-left: 1rem;
+}
+
 .header {
     opacity: 0.95;
     color: white;
