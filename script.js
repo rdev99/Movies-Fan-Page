@@ -24,12 +24,13 @@ function moviesearch() {
         let list = '';
         try {
             let data = xhr.response;
+            console.log(data);
             for (let i = 0; i < data.Search.length; i++) {
                 if (data.Search[i].Poster === "N/A") {
                     continue;
                 }
 
-                list = list + `<div class="content-search" onclick="getmovie('${data.Search[i].imdbID}','${data.Search[i].Title}')"><img src="${data.Search[i].Poster}" alt=""><h2 style="text-align: center;">${data.Search[i].Title}(${data.Search[i].Year})</h2></div>`
+                list = list + `<div class="content-search" onclick="getmovie('${data.Search[i].imdbID}','${data.Search[i].Title}')"><img class="list-image" src="${data.Search[i].Poster}" alt=""><div class="middle"><div class="list-text">${data.Search[i].Title}<br>(${data.Search[i].Year})</div></div></div>`;
             }
         }
         catch {
@@ -40,7 +41,7 @@ function moviesearch() {
     xhr.send();
 }
 
-async function getmovie(imdbtitle, titlemovie) {
+function getmovie(imdbtitle, titlemovie) {
     document.getElementById('listitem').innerHTML = '';
     document.getElementById('content').innerHTML = '';
     document.getElementById('loader').classList.add('loader');

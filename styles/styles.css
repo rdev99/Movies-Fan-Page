@@ -26,7 +26,7 @@ body {
     margin: 0px;
     height: 100vh;
     width: 100%;
-    background-image: url("../assets/back.jpg"), linear-gradient(to right, #444, #aaa, orange);
+    background-image: url("../assets/back.jpg"), linear-gradient(to right, rgb(175, 90, 90), rgb(155, 155, 155), rgb(56, 150, 80));
     background-blend-mode: color-burn;
     background-size: cover;
 }
@@ -201,18 +201,49 @@ img {
 }
 
 .content-search {
+    position: relative;
     margin-left: 70px;
     margin-right: 70px;
     margin-bottom: 30px;
     display: inline-block;
     cursor: pointer;
 }
-.content-search h2 {
-    width: 200px;
-}
-.content-search img {
-    height: 300px;
+
+.content-search .list-image {
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    height: 100%;
     width : 200px;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.content-search:hover > .list-image {
+    opacity: 0.4;
+    
+}
+  
+.content-search:hover > .middle {
+    opacity: 1;
+}
+
+.list-text {
+    background-color: #222222;
+    color: white;
+    opacity: 0.94;
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+    padding: 16px 32px;
 }
 
 .searchButton:active{
